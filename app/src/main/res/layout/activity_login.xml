@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    android:background="@drawable/guest_bg_loading"
+    tools:context=".LoginActivity"
+    >
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
@@ -18,7 +20,8 @@
         android:layout_marginBottom="34dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name     "
+        android:hint="Name"
+        android:textColorHint="#80ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
