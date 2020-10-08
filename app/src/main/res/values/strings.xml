@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Splash Screen</string>
+    <string name="authcode">" "AuthCode</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="todo_">TODO</string>
+    <string name="todo">TODO</string>
 </resources>
