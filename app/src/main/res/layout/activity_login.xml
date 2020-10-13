@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="@drawable/guest_bg_loading">
+    android:background="@drawable/guest_bg_loading"
+    android:paddingTop="?android:attr/actionBarSize">
 
     <TextView
         android:id="@+id/textView4"
@@ -169,7 +170,7 @@
         android:layout_marginRight="15dp"
         android:background="#7bb93f"
         android:fontFamily="sans-serif"
-        android:text="Sign Up"
+        android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

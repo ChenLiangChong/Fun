@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/guest_bg_loading"
-    tools:context=".SignUpActivity">
+    tools:context=".SignUpActivity"
+    android:paddingTop="?android:attr/actionBarSize">
 
     <TextView
         android:id="@+id/titleGender"

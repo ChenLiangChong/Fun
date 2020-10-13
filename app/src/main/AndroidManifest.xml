@@ -32,14 +32,16 @@
             android:name=".LoginActivity"
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/WithActionBar"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:label="Login">
         </activity>
 
         <activity
             android:name=".SignUpActivity"
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/WithActionBar"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:label="Register">
         </activity>
 
         <activity android:name=".HomeActivity" />
