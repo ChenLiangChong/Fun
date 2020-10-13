@@ -34,7 +34,6 @@
         android:textColor="@color/white"
         android:textColorHint="#80ffffff"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/Submit"
         app:layout_constraintEnd_toEndOf="@+id/inputBirth"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/inputBirth"

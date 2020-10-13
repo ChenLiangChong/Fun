@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.util.ArrayList;
@@ -85,8 +87,10 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     DotsIndicator dotsIndicator;
     List<PageView> pageList;
-    Button login;
+    Button SignUp,login;
     ConstraintLayout qrButton;
+
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,11 +98,19 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.textView6);
         String Welcome = "<b>FUN</b>SERVICE";
         textView.setText((Html.fromHtml(Welcome)));
+        SignUp = findViewById(R.id.register);
+        SignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
         login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -121,6 +133,23 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(new PageAdapter());
         dotsIndicator = findViewById(R.id.dot);
         dotsIndicator.setViewPager(viewPager);
+
+        mAuth = FirebaseAuth.getInstance();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser!=null) updateUI(currentUser);
+    }
+
+    private void updateUI(FirebaseUser user) {
+        if(user!=null){
+            Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+            startActivity(intent);
+        }
     }
 
     private class PageAdapter extends PagerAdapter {
