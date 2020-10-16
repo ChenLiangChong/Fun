@@ -14,17 +14,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+import com.journeyapps.barcodescanner.CaptureActivity;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
 
     public class PageView extends RelativeLayout {
         public PageView(Context context) {
@@ -88,7 +94,9 @@ public class MainActivity extends AppCompatActivity {
     DotsIndicator dotsIndicator;
     List<PageView> pageList;
     Button SignUp,login;
+    EditText AuthCode;
     ConstraintLayout qrButton;
+
 
     FirebaseAuth mAuth;
     @Override
@@ -115,13 +123,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         qrButton = findViewById(R.id.QR_button);
-        qrButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ScanqrActivity.class);
-                startActivity(intent);
-            }
-        });
+        qrButton.setOnClickListener(this);
+        AuthCode = findViewById(R.id.AuthCode);
 
         pageList = new ArrayList<>();
         pageList.add(new PageList1(MainActivity.this));
@@ -135,6 +138,36 @@ public class MainActivity extends AppCompatActivity {
         dotsIndicator.setViewPager(viewPager);
 
         mAuth = FirebaseAuth.getInstance();
+    }
+
+    @Override
+    public void onClick(View v) {
+        IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+        intentIntegrator.setCaptureActivity(CustomCaptureActivity.class);
+        intentIntegrator.setOrientationLocked(false);
+        intentIntegrator.setDesiredBarcodeFormats(intentIntegrator.ALL_CODE_TYPES);
+        intentIntegrator.setPrompt("Scanner code");
+        intentIntegrator.initiateScan();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(result != null) {
+            if(result.getContents() != null) {
+                AuthCode.setText(result.getContents());
+            }else {
+                if(data!=null) {
+                    Bundle bundle = data.getExtras();
+                    String scanResult = bundle.getString("qr_scan_result");
+                    //将扫描出的信息显示出来
+                    AuthCode.setText(scanResult);
+                }
+            }
+        }else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override

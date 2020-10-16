@@ -15,14 +15,15 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+
+        app:layout_constraintBottom_toTopOf="@+id/AuthCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/AuthCode"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="30dp"
@@ -33,7 +34,6 @@
         android:ems="10"
         android:fontFamily="sans-serif"
         android:hint="@string/authcode"
-        android:inputType="textPersonName"
         android:textColorHint="#80666666"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -96,18 +96,17 @@
         android:textAllCaps="false"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/QR_button"
         android:layout_width="45dp"
         android:layout_height="40dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:background="#7bb93f"
-        android:id="@+id/QR_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
+
+        app:layout_constraintStart_toEndOf="@+id/AuthCode"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.23">
 
@@ -116,13 +115,13 @@
             android:id="@+id/imageView"
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:contentDescription="@string/todo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.461"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/qr_code"
-            android:contentDescription="@string/todo" />
+            app:srcCompat="@drawable/qr_code" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.viewpager.widget.ViewPager

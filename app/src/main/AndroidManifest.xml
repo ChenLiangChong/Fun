@@ -28,6 +28,11 @@
 
         <activity android:name=".ScanqrActivity" />
 
+        <activity android:name=".CustomCaptureActivity"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
         <activity
             android:name=".LoginActivity"
             android:windowSoftInputMode="adjustPan"
