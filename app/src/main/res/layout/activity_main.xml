@@ -182,6 +182,16 @@
             android:background="@color/white"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/Alarm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="#ff0000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/QR_button"
+        app:layout_constraintStart_toStartOf="@+id/AuthCode"
+        app:layout_constraintTop_toBottomOf="@+id/AuthCode" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -55,6 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 101;
     Button btnFacebook,btnGoogle,btnSignUp;
+    ImageButton back;
     CallbackManager mCallbackManager;
     GoogleSignInClient mGoogleSignInClient;
 
@@ -69,9 +71,18 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FacebookSdk.sdkInitialize(SignUpActivity.this);
+
+        back = findViewById(R.id.back_button);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnFacebook = findViewById(R.id.btnFacebook);
         btnGoogle = findViewById(R.id.btnGoogle);

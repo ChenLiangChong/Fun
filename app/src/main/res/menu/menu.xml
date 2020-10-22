@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="HOME"
+        android:icon="@drawable/home_selector" />
+    <item
+        android:id="@+id/mbooking"
+        android:title="My Booking"
+        android:icon="@drawable/book_selector"/>
+    <item
+        android:id="@+id/coupon"
+        android:title="Coupon"
+        android:icon="@drawable/coupon_selector"/>
+    <item
+        android:id="@+id/messenger"
+        android:title="Messenger"
+        android:icon="@drawable/messenger_selector"/>
+</menu>

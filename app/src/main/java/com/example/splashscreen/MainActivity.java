@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.TextPaint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,16 +97,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button SignUp,login;
     EditText AuthCode;
     ConstraintLayout qrButton;
-
+    TextView Alarm,textView;
 
     FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView textView = findViewById(R.id.textView6);
+
+
+        textView = findViewById(R.id.textView6);
         String Welcome = "<b>FUN</b>SERVICE";
         textView.setText((Html.fromHtml(Welcome)));
+
         SignUp = findViewById(R.id.register);
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         });
+
         login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,9 +127,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         });
+
         qrButton = findViewById(R.id.QR_button);
         qrButton.setOnClickListener(this);
         AuthCode = findViewById(R.id.AuthCode);
+        Alarm = findViewById(R.id.Alarm);
 
         pageList = new ArrayList<>();
         pageList.add(new PageList1(MainActivity.this));
@@ -156,17 +163,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() != null) {
-                AuthCode.setText(result.getContents());
+                AuthCheck(result.getContents());
+                //AuthCheck(result.getContents());
             }else {
                 if(data!=null) {
                     Bundle bundle = data.getExtras();
                     String scanResult = bundle.getString("qr_scan_result");
                     //将扫描出的信息显示出来
-                    AuthCode.setText(scanResult);
+                    AuthCheck(scanResult);
                 }
             }
         }else {
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    public void AuthCheck(String AuthCode){
+        if (AuthCode.equals("000000")){
+            Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+            startActivity(intent);
+        }else{
+            Alarm.setText("AuthCode error! Please check and try again, or you can use QR code.");
         }
     }
 

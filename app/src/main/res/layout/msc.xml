@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="-31dp"
-        tools:layout_editor_absoluteY="-48dp" />
+        tools:layout_editor_absoluteY="-48dp"
+        />
 
     <com.journeyapps.barcodescanner.ViewfinderView
         android:id="@+id/zxing_viewfinder_view"
@@ -25,8 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="79dp"
         android:gravity="center"
-        android:text="ㄍㄋㄋㄋㄋ"
-        android:textColor="@android:color/white"
+        android:text="Point Camera at a QR code"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/zxing_barcode_surface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

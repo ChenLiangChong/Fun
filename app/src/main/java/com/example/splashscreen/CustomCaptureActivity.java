@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,7 +33,7 @@ public class CustomCaptureActivity extends Activity {
 
     private ProgressDialog mProgress;
     private Bitmap scanBitmap;
-    private Button btnAlbum;
+    private ImageButton btnAlbum;
     private CaptureManager capture;
     private DecoratedBarcodeView barcodeScannerView;
 
@@ -48,7 +49,7 @@ public class CustomCaptureActivity extends Activity {
         capture.initializeFromIntent(getIntent(), savedInstanceState);
         capture.decode();
 
-        btnAlbum = (Button) findViewById(R.id.button);
+        btnAlbum = (ImageButton) findViewById(R.id.img_button);
         btnAlbum.setOnClickListener(albumOnClick);
     }
 
