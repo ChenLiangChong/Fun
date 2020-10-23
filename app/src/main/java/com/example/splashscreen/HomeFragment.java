@@ -3,17 +3,25 @@ package com.example.splashscreen;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,9 +35,16 @@ public class HomeFragment extends Fragment {
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     View v;
+    RecyclerView recyclerView;
+    RecyclerView.Adapter AdAdapter;
+    RecyclerView.LayoutManager ad_LayoutManager;
+
+    ArrayList<String> adDescriptionList = new ArrayList<String> (Arrays.asList("hehehehe","hahahhahahah","kerokerokero"));
+
+    ArrayList<Integer> adImages = new ArrayList<Integer>(Arrays.asList(R.drawable.img_ad_1,R.drawable.img_ad_2,R.drawable.img_ad_1));
 
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    // the fragment initializati11on parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -81,6 +96,13 @@ public class HomeFragment extends Fragment {
         mAuth= FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
+        recyclerView = view.findViewById(R.id.recView);
+        recyclerView.setHasFixedSize(true);
+        ad_LayoutManager = new LinearLayoutManager(view.getContext());
+        recyclerView.setLayoutManager(ad_LayoutManager);
+        AdAdapter = new AdAdapter(view.getContext(),adDescriptionList,adImages);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
+        recyclerView.setAdapter(AdAdapter);
 
         if (mUser!=null){
             textEmail.setText(mUser.getEmail());
@@ -99,4 +121,18 @@ public class HomeFragment extends Fragment {
         });
         return view;
     }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT|ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            adDescriptionList.remove(viewHolder.getAdapterPosition());
+            adImages.remove(viewHolder.getAdapterPosition());
+            AdAdapter.notifyDataSetChanged();
+        }
+    };
 }
