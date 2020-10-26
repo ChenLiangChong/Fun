@@ -52,7 +52,7 @@
         android:background="#59ffffff"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/btnGoogle"
         app:layout_constraintVertical_bias="0.0" />
@@ -164,7 +164,7 @@
         app:layout_constraintTop_toBottomOf="@+id/titlePassword" />
 
     <Button
-        android:id="@+id/btnSignUp"
+        android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="52dp"
         android:layout_marginStart="15dp"
@@ -193,7 +193,7 @@
         android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

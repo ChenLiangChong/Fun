@@ -2,11 +2,20 @@ package com.example.splashscreen;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +28,17 @@ public class BookFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    TextView title;
+    ImageButton setting;
+
+    RecyclerView recyclerView;
+    RecyclerView.Adapter bookingAdapter;
+    RecyclerView.LayoutManager ad_LayoutManager;
+
+    ArrayList<String> HotelName = new ArrayList<String> (Arrays.asList("FUNHotel","Sultania Hotel","Sultania Hotel"));
+    ArrayList<String> HotelDate = new ArrayList<String> (Arrays.asList("25 NOV WED - 28 NOV SAT","28 NOV WED - 30 NOV SAT","Date Expired"));
+    ArrayList<Integer> HotelImages = new ArrayList<Integer>(Arrays.asList(R.drawable.img_my_booking_1,R.drawable.img_my_booking_2,R.drawable.img_my_booking_2));
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -59,6 +79,36 @@ public class BookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_book, container, false);
+        View view = inflater.inflate(R.layout.fragment_book, container, false);
+        title = view.findViewById(R.id.txtTitle);
+        title.setText("My Booking");
+
+        setting = view.findViewById(R.id.Setting);
+        setting.setBackgroundResource(R.drawable.guest_ic_add);
+
+        recyclerView = view.findViewById(R.id.recView);
+        recyclerView.setHasFixedSize(true);
+        ad_LayoutManager = new LinearLayoutManager(view.getContext());
+        recyclerView.setLayoutManager(ad_LayoutManager);
+        bookingAdapter = new BookingAdapter(view.getContext(),HotelName,HotelDate,HotelImages);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
+        recyclerView.setAdapter(bookingAdapter);
+
+        return view;
     }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT|ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            HotelName.remove(viewHolder.getAdapterPosition());
+            HotelDate.remove(viewHolder.getAdapterPosition());
+            HotelImages.remove(viewHolder.getAdapterPosition());
+            bookingAdapter.notifyDataSetChanged();
+        }
+    };
 }

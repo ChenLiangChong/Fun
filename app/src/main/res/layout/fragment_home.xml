@@ -8,6 +8,7 @@
 
     <!-- TODO: Update blank fragment layout -->
     <include
+        android:id="@+id/include4"
         layout="@layout/r_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,19 +24,19 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintVertical_bias="0.18" />
 
     <TextView
         android:id="@+id/textUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.834" />
+        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+        app:layout_constraintStart_toEndOf="@+id/profile_image"
+        app:layout_constraintTop_toTopOf="@+id/profile_image"
+        app:layout_constraintVertical_bias="0.566" />
 
     <TextView
         android:id="@+id/textEmail"
@@ -43,11 +44,11 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/btnLogout"
-        app:layout_constraintEnd_toEndOf="@+id/textUsername"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textUsername"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textUsername"
-        app:layout_constraintVertical_bias="0.895" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView7"
@@ -60,6 +61,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogout"
         app:layout_constraintVertical_bias="0.013" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/img_my_booking_1"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include4" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recView"
